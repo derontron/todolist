@@ -19,13 +19,22 @@
 
 // });
 
-$("li").click(function(){
+$("ul").on("click", "li", function(){
 	$(this).toggleClass("completed");
 });
 
-$("span").click(function(event){
+$("ul").on("click", "span", function(event){
 	$(this).parent().fadeOut(500, function(){
 		$(this).remove();
 	});
 	event.stopPropagation();
+});
+
+$("input").keypress(function(event){
+	// grab text from input once enter is pressed
+	if (event.which === 13) {
+		var todoText = $(this).val();
+		// create a new li and add to ul
+		$('ul').append('<li><span>X </span>' + todoText + '</li>');
+	}
 });
